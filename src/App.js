@@ -22,6 +22,16 @@ class App extends Component {
     // array or recipe objects
     console.log(this.state.recipes.hits) */
     
+    this.componentDidMount = () => {
+      const json = window.localStorage.getItem("recipes");
+      const recipes = JSON.parse(json);
+      this.setState({recipes});
+    }
+
+    this.componentDidUpdate = () => {
+      const recipes = JSON.stringify(this.state.recipes);
+      window.localStorage.setItem("recipes", recipes);
+    }
   }
   render() {
     return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const SHHH = ["25b8aba1", "3ef44dd97a9674210ec3e16e950cc968"];
 
@@ -22,8 +23,21 @@ componentDidMount = async () => {
 }
 
   render() {
+    const recipe = this.state.activeRecipe;
     return (
-      <h1>Recipe cooomponent!</h1>
+      <div className="container">
+        { this.state.activeRecipe &&
+          <div className="active-recipe">
+          <img className="active-recipe__img" src={recipe.image} alt={recipe.label} />
+          <h3 className="active-recipe__title">{recipe.label }</h3>
+          <h4 className="active-recipe__publisher">Publisher: <span>{recipe.source}</span></h4>
+          <button className="active-recipe__button">
+            <Link to="/">Go Home</Link>
+          </button>
+        </div>
+
+        }
+      </div>
     )
   }
 }
