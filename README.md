@@ -1,7 +1,6 @@
 #
 
-Recipe-search app
--reactjs, API-
+Recipe-search app - reactjs, (Browser)Router, API.
 
-Learning jsx. Made by following tutorial from 2019,
-BUT now that that tutorials API is out of service I had to use another API, do workarounds and debug. Also will be adding / added my components & styling.
+![Alt text](demo_img1.png)
+![Alt text](demo_img2.png)
