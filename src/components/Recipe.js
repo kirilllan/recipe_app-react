@@ -9,8 +9,7 @@ class Recipe extends React.Component {
   }
   
 componentDidMount = async () => {
-    const title = this.props.location.state.recipe || '';
-    console.log(this.props)
+  const title = this.props.location.state.recipe || '';
     const req = await fetch(`https://api.edamam.com/search?q=${title}&app_id=${SHHH[0]}&app_key=${SHHH[1]}`);
     
     const res = await req.json();
@@ -18,7 +17,7 @@ componentDidMount = async () => {
     this.setState({
       activeRecipe: res.hits[res.hits.findIndex(i => i.recipe.label == this.props.location.state.recipe)].recipe
     })
-    console.log(this.state.activeRecipe)
+    console.log('this.state.activeRecipe: ',this.state.activeRecipe)
     
 }
 
@@ -31,8 +30,16 @@ componentDidMount = async () => {
           <img className="active-recipe__img" src={recipe.image} alt={recipe.label} />
           <h3 className="active-recipe__title">{recipe.label }</h3>
           <h4 className="active-recipe__publisher">Publisher: <span>{recipe.source}</span></h4>
-          <button className="active-recipe__button">
-            <Link to="/">Go Home</Link>
+          {this.state.activeRecipe.ingredientLines.map(ingredient => {
+              return (
+                <p>{ingredient}</p>
+              )
+            })}
+            <button className="active-recipe__button" style={{marginBottom:"2rem"}}>
+            <Link to={{pathname: this.state.activeRecipe.url}} target="_blank">View cooking instructions</Link>
+          </button>
+          <button className="active-recipe__button" style={{marginBottom:"2rem"}}>
+            <Link to="/">Home</Link>
           </button>
         </div>
 

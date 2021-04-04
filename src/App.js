@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Form from "./components/Form";
 import Header from "./components/Header";
+import Nav from "./components/Nav";
 import Recipes from "./components/Recipes";
 
 const SHHH = ["25b8aba1", "3ef44dd97a9674210ec3e16e950cc968"];
@@ -17,11 +18,7 @@ class App extends Component {
     
     const data = await api_call.json();
     this.setState({ recipes: data})
-    /* // whole obj
-    console.log(this.state.recipes)
-    // array or recipe objects
-    console.log(this.state.recipes.hits) */
-    
+ 
     this.componentDidMount = () => {
       const json = window.localStorage.getItem("recipes");
       const recipes = JSON.parse(json);
@@ -36,10 +33,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {console.log('state',this.state)}
+         <Nav />
         <Header />
         <Form getRecipe={this.getRecipe} />
-        { console.log('RECIPES, @ RENDER: ', this.state.recipes )}
         <Recipes recipes={this.state.recipes} />
      </div>
     )
